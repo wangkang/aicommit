@@ -84,6 +84,7 @@ func findGitRoot(dir string) (string, error) {
 	}
 }
 
+const userConfigDir = ".aicommit"
 const styleGuideFilename = "COMMITS.md"
 
 // findRepoStyleGuide searches for "COMMITS.md" in the repository root of dir
@@ -109,7 +110,7 @@ func findUserStyleGuide() (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("find user home dir: %w", err)
 	}
-	styleGuide, err := os.ReadFile(filepath.Join(home, styleGuideFilename))
+	styleGuide, err := os.ReadFile(filepath.Join(home, userConfigDir, styleGuideFilename))
 	if err != nil {
 		if os.IsNotExist(err) {
 			return "", nil
